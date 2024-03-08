@@ -1,4 +1,4 @@
-#include "holberton.h"
+#include "main.h"
 
 /**
  * prime2 - Makes possible to evaluate from 1 to n
@@ -16,6 +16,13 @@ int prime2(int a, int b)
 		return (0);
 	return (prime2(a, b + 1));
 }
+/**
+ * is_prime_number - checks if a number is prime
+ * @n: Number Integer
+ *
+ * Return: On success 1.
+ * On error, -1 is returned, and errno is set appropriately.
+ */
 int is_prime_number(int n)
 {
 	if (n <= 1)
