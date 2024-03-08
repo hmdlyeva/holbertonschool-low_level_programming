@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <stdlib.h>
+
 
 /**
  * main - Entry point
@@ -8,21 +10,20 @@
  *
  * Return: Always 0 (Success)
  */
-int main(int argc, char **argv)
-	{
+int main(int argc, char *argv[]) {
+    
+    if (argc != 3) {
+        printf("Error\n");
+        return 1;
+    }
 
-	 int total;
+    int num1 = atoi(argv[1]);
+    int num2 = atoi(argv[2]);
 
-	if (argc < 2)
-	{
-		printf("Error\n");
-		return (1);
-	}
+    int result = num1 * num2;
 
-	total = (int) *argv[1] * (int) *argv[2];
+    
+    printf("%d\n", result);
 
-	printf("%d\n", total);
-
-	return (0);
-
-	}
+    return 0;
+}
