@@ -14,21 +14,21 @@ dog_t *new_dog(char *name, float age, char *owner)
     dog_t *p;
     char *name_copy, *owner_copy;
 
-    
+    /* Allocate memory for the dog structure */
     p = malloc(sizeof(dog_t));
     if (p == NULL)
         return (NULL);
 
-    
+    /* Allocate memory and copy name */
     name_copy = malloc(strlen(name) + 1);
     if (name_copy == NULL)
     {
         free(p);
         return (NULL);
     }
-    strcpy(name_copy, name);
+    strncpy(name_copy, name, strlen(name) + 1);
 
-    
+    /* Allocate memory and copy owner */
     owner_copy = malloc(strlen(owner) + 1);
     if (owner_copy == NULL)
     {
@@ -36,9 +36,9 @@ dog_t *new_dog(char *name, float age, char *owner)
         free(p);
         return (NULL);
     }
-    strcpy(owner_copy, owner);
+    strncpy(owner_copy, owner, strlen(owner) + 1);
 
-    
+    /* Assign copied strings to the dog struct */
     p->name = name_copy;
     p->age = age;
     p->owner = owner_copy;
