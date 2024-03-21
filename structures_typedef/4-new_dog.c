@@ -1,47 +1,91 @@
-#include "dog.h"
 #include <stdlib.h>
-#include <string.h>
+#include "dog.h"
+
+int _strlen(char *s);
+char *_strcpy(char *dest, char *src);
 
 /**
- * new_dog - creates a new dog
- * @name: name of the dog
- * @age: age of the dog
- * @owner: owner of the dog
- * Return: pointer to the new dog struct, or NULL if failed
- */
+  * new_dog - ...
+  * @name: ...
+  * @age: ...
+  * @owner: ...
+  *
+  * Return: ...
+  */
 dog_t *new_dog(char *name, float age, char *owner)
 {
-    dog_t *p;
-    char *name_copy, *owner_copy;
+	dog_t *max_dog;
+	int name_l = 0, own_l = 0;
 
-    /* Allocate memory for the dog structure */
-    p = malloc(sizeof(dog_t));
-    if (p == NULL)
-        return (NULL);
+	if (name != NULL && owner != NULL)
+	{
+		name_l = _strlen(name) + 1;
+		own_l = _strlen(owner) + 1;
+		max_dog = malloc(sizeof(dog_t));
 
-    /* Allocate memory and copy name */
-    name_copy = malloc(strlen(name) + 1);
-    if (name_copy == NULL)
-    {
-        free(p);
-        return (NULL);
-    }
-    strncpy(name_copy, name, strlen(name) + 1);
+		if (max_dog == NULL)
+			return (NULL);
 
-    /* Allocate memory and copy owner */
-    owner_copy = malloc(strlen(owner) + 1);
-    if (owner_copy == NULL)
-    {
-        free(name_copy);
-        free(p);
-        return (NULL);
-    }
-    strncpy(owner_copy, owner, strlen(owner) + 1);
+		max_dog->name = malloc(sizeof(char) * name_l);
 
-    /* Assign copied strings to the dog struct */
-    p->name = name_copy;
-    p->age = age;
-    p->owner = owner_copy;
+		if (max_dog->name == NULL)
+		{
+			free(max_dog);
+			return (NULL);
+		}
 
-    return (p);
+		max_dog->owner = malloc(sizeof(char) * own_l);
+
+		if (max_dog->owner == NULL)
+		{
+			free(max_dog->name);
+			free(max_dog);
+			return (NULL);
+		}
+
+		max_dog->name = _strcpy(max_dog->name, name);
+		max_dog->owner = _strcpy(max_dog->owner, owner);
+		max_dog->age = age;
+	}
+
+	return (max_dog);
+}
+
+/**
+  * _strlen - Returns the length of a string
+  * @s: String to count
+  *
+  * Return: String length
+  */
+int _strlen(char *s)
+{
+	int c = 0;
+
+	for (; *s != '\0'; s++)
+	{
+		c++;
+	}
+
+	return (c);
+}
+
+/**
+  * _strcpy - Copy a string
+  * @dest: Destination value
+  * @src: Source value
+  *
+  * Return: the pointer to dest
+  */
+char *_strcpy(char *dest, char *src)
+{
+	int i;
+
+	for (i = 0; src[i] != '\0'; i++)
+	{
+		dest[i] = src[i];
+	}
+
+	dest[i++] = '\0';
+
+	return (dest);
 }
