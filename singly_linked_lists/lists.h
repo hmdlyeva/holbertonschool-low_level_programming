@@ -2,6 +2,10 @@
 #define LISTS_H
 #include <stdlib.h>
 
+/**
+ * struct list_s - singly linked list
+ *
+ */
 
 typedef struct list_s
 {
